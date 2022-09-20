@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="row justify-content-around">Edit Form</h3>
+<!-- <div class="row mt-15 ml-15" > -->
+<div class="row justify-content-around" class="modal-body">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="exampleInputEmail1">Ticket ID</label>
+        <input type="text" value="{{ticketdata.ticket_id}}" name="ticket_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Server Details</label>
+        <input type="text" value="{{ticketdata.server_details}}" name="server_details" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Send Date</label>
+        <input type="datetime-local" value="{{ticketdata.send_date.value | date:'c' }}" name="send_date" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">License No</label>
+        <input type="text" value="{{ticketdata.license_no}}" name="license_no" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Files</label>
+        <input type="file" value="{{ticketdata.file}}" name="file" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <!-- <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</form>
+</div>
+{% endblock %}

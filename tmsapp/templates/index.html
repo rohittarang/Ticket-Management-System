@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Server Details</th>
+                    <th>Send Date</th>
+                    <th>License No</th>
+                    <th>Files</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for data in ticketdata.all %}
+                <tr>
+                    <td>{{data.ticket_id}}</td>
+                    <td>{{data.server_details}}</td>
+                    <td>{{data.send_date}}</td>
+                    <td>{{data.license_no}}</td>
+                    <td>{{data.file}}</td>
+                    <td><a href="{% url 'edit' data.id %}" class="btn btn-info">Edit</a></td>
+                    <td><a href="{% url 'delete' data.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <script>
+            $(document).ready( function () {
+                $('#table_id').DataTable();
+                } );
+        </script>
+    
+{% endblock %}

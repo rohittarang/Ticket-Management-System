@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="col-sm-10">
+    <div class="row mt-1">
+        <h4>Login Form</h4>
+    </div>
+
+    {% for message in messages %}
+    <div class="row mt-1">
+        <h6 class="alert alert-success">{{ message }}</h6>
+    </div>
+    {% endfor %}
+
+    <div class="row mt-20">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
