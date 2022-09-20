@@ -1,0 +1,92 @@
+Server Details : sezsansoft33.neilsoft.in
+License No : ECB1D7406B44
+
+1. virtualenv ticketenv
+2. cd ticketenv
+3. scripts\activate
+4. pip install django
+5. django-admin startproject tmsproject .
+6. code .
+7. django-admin startapp tmsapp
+8. 'tmsapp.apps.TmsappConfig',
+9. path('',include('tmsapp.urls'),)
+10. tmsapp > newfolder > templates > index.html > <h1>Index page</h1>
+11. tmsapp > urls.py > 
+
+from django.urls import path
+from .import views
+
+urlpatterns = [
+    path('',views.Index,name='index'),
+]
+
+12. views.py
+from django.shortcuts import render
+
+# Create your views here.
+
+def Index(request):
+    return render(request, 'index.html')
+
+13. models.py
+
+class Ticket(models.Model):
+    ticket_id = models.CharField(max_length=8, default='NS000001', editable=False)
+    server_details = models.CharField(max_length=100)
+    send_date = models.DateTimeField('created at',auto_now_add=True)
+    license_no = models.CharField(max_length=25)
+    file = models.FileField()
+    
+    def __str__(self):
+        return self.ticket_id
+
+14. 
+
+
+
+
+
+ticketId = models.UUIDField(
+        primary_key = True,
+        default = uuid.uuid4,    # do not call, just pass the callable
+        editable = False
+    )
+	
+ticketId = models.UUIDField(primary_key = True,default = uuid.uuid4(),editable = False)
+    seatNo = models.IntegerField(default=0)
+	
+	
+	==================================
+	
+	    # def save(self, force_insert=False, force_update=False):
+    #     if self.ticket_id == "":
+    #         existing_codes = Ticket.objects.all().order_by('-ticket_id')
+    #         if existing_codes.count() > 0:
+    #             new_code = int(existing_codes[0].code[1:]) + 1
+    #         else:
+    #             new_code = 0
+    #         self.ticket_id = 'NS%03d' % new_code
+    #     super(Ticket, self).save(force_insert, force_update)
+
+	======================================
+
+    # def save(self, force_insert=False, force_update=False):
+    #     self.ticket_id = 'NS%08d' % self.ticket_id
+    #     super(Ticket, self).save(force_insert, force_update)
+	
+	========================================
+	
+	# ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # ticket_id = models.AutoField(primary_key=True, editable=False, default='000000')
+    # string_ticket_id = models.CharField(max_length=100, default='')
+	
+	=======================================
+	
+	 # def save(self):
+    #     new_id = self.ticket_id
+    #     self.string_ticket_id = str(new_id) + '_dot'
+    #     super(Ticket, self).save()
+	
+	==========================================
+	
+	<td>{{data.ticket_id}}</td>
